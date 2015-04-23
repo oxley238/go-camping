@@ -1,0 +1,17 @@
+body {
+font-family:verdana;
+}
+
+h1,h2 {
+color:rgb(70,120,70);
+letter-spacing:0.7em;
+}
+
+h2 {text-align:center;}
+
+#banner {width:100%;}
+
+table {
+width:auto;
+margin:0em auto;
+}
