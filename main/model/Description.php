@@ -1,15 +1,11 @@
 <?php
 
-namespace model;
+class Description {
 
-class Categories {
-
-    // private $categories = null;
     private $resultset = null;
     private $row;
 
-    public function __construct() {
-
+    public function __construct($id) {
         try {
             $database = "go-camping";
             $username = "root";
@@ -19,17 +15,16 @@ class Categories {
             $db = new PDO("mysql:host=localhost;dbname=$database", $username, $password);
 
 //define query
-            $query = "SELECT id, name,url FROM categories";
+            $query = "SELECT id, name,images,price,description from products where id = " . $id;
 
 //execute query and returns a PDOStatement object
             $this->resultset = $db->query($query);
+            
+            $this->next();
+            
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-    }
-
-    function getCategories() {
-        return $this->categories;
     }
 
     public function next() {
@@ -37,16 +32,24 @@ class Categories {
         return $this->row;
     }
 
-    public function getName() {
-        return $this->row['name'];
-    }
-
     public function getId() {
         return $this->row['id'];
     }
 
-    public function getUrl() {
-        return $this->row['url'];
+    public function getName() {
+        return $this->row['name'];
+    }
+
+    public function getImage() {
+        return $this->row['images'];
+    }
+
+    public function getPrice() {
+        return $this->row['price'];
+    }
+
+    public function getDescription() {
+        return $this->row['description'];
     }
 
 }
